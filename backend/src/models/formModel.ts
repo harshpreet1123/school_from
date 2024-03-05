@@ -2,94 +2,64 @@ import { Document, Schema, model } from "mongoose";
 
 export interface IForm extends Document {
   peNumber: number;
-  candidate: {
-    name: string;
-    sex: string;
-    age: string;
-    dob: Date;
-    religion: string;
-    caste: string;
-    nationality: string;
-    image: string;
-    aadharNo: number;
-  };
-  father?: {
-    name: string;
-    image: string;
-    eduQualification: string;
-    occupation: string;
-  };
-  guardian?: {
-    name: string;
-    image: string;
-    eduQualification: string;
-    occupation: string;
-  };
-  mother: {
-    name: string;
-    image: string;
-    eduQualification: string;
-    occupation: string;
-  };
-  permanentAddress: {
-    villageTown: string;
-    po: string;
-    tehsil: string;
-    district: string;
-    state: string;
-    pincode: string;
-  };
-  presentAddress: {
-    villageTown: string;
-    po: string;
-    tehsil: string;
-    district: string;
-    state: string;
-    pincode: string;
-  };
-  contact: {
-    phone: number;
-    altPhone: number;
-    email: string;
-  };
-
+  name: string;
+  sex: string;
+  age: number;
+  dob: Date;
+  religion: string;
+  caste: string;
+  nationality: string;
+  image: string;
+  aadharNo: number;
+  fatherORguardian: string;
+  FGname: string;
+  FGimage: string;
+  FGeduQualification: string;
+  FGoccupation: string;
+  Mname: string;
+  Mimage: string;
+  MeduQualification: string;
+  Moccupation: string;
+  perVillageTown: string;
+  perPo: string;
+  perTehsil: string;
+  perDistrict: string;
+  perState: string;
+  perPincode: string;
+  currVillageTown: string;
+  currPo: string;
+  currTehsil: string;
+  currDistrict: string;
+  currState: string;
+  currPincode: string;
+  phone: number;
+  altPhone: number;
+  email: string;
   bpl: string;
   rcNo: number;
   totalIncome: number;
-  bankDetails: {
-    name: string;
-    accNumber: string;
-    ifscCode: string;
-  };
+  bankName: string;
+  bankAccNumber: string;
+  bankIfscCode: string;
   psebRegNo: string;
-  previousSchool: {
-    name: string;
-    board: string;
-    attendance: string;
-    percentage: string;
-  };
-  health: {
-    isAllergic: boolean;
-    allergies?: string;
-    bloodGroup: string;
-    heightCms: number;
-    weightKg: number;
-  };
-  sibling1?: {
-    name: string;
-    class: string;
-    admissionNo: string;
-  };
-  sibling2?: {
-    name: string;
-    class: string;
-    admissionNo: string;
-  };
-  sibling3?: {
-    name: string;
-    class: string;
-    admissionNo: string;
-  };
+  previousSchool: string;
+  previousBoard: string;
+  previousAttendance: string;
+  previousPercentage: string;
+  isAllergic: boolean;
+  allergies?: string;
+  bloodGroup: string;
+  heightCms: number;
+  weightKg: number;
+  sb1name?: string;
+  sb1class?: string;
+  sb1admissionNo?: string;
+  sb2name?: string;
+  sb2class?: string;
+  sb2admissionNo?: string;
+  sb3name?: string;
+  sb3class?: string;
+  sb3admissionNo?: string;
   isApprove: boolean;
   isAdmissionGranted: boolean;
   reasonIfNot?: string;
@@ -98,138 +68,69 @@ export interface IForm extends Document {
   rollno: string;
   dateOfAdmission: Date;
   remarks?: string;
-  isConcessionGranted: boolean;
   concessionType: string;
 }
 
 const FormSchema = new Schema<IForm>({
-  peNumber: { type: Number, required: true },
-  candidate: {
-    type: {
-      name: { type: String, required: true },
-      sex: { type: String, required: true },
-      age: { type: String, required: true },
-      dob: { type: Date, required: true },
-      religion: { type: String, required: true },
-      caste: { type: String, required: true },
-      nationality: { type: String, required: true },
-      image: { type: String, required: true },
-      aadharNo: { type: Number, required: true },
-    },
-    required: true,
-  },
-  father: {
-    type: {
-      name: { type: String, required: true },
-      image: { type: String, required: true },
-      eduQualification: { type: String, required: true },
-      occupation: { type: String, required: true },
-    },
-    required: false,
-  },
-  guardian: {
-    type: {
-      name: { type: String, required: true },
-      image: { type: String, required: true },
-      eduQualification: { type: String, required: true },
-      occupation: { type: String, required: true },
-    },
-    required: false,
-  },
-  mother: {
-    type: {
-      name: { type: String, required: true },
-      image: { type: String, required: true },
-      eduQualification: { type: String, required: true },
-      occupation: { type: String, required: true },
-    },
-    required: true,
-  },
-  permanentAddress: {
-    type: {
-      villageTown: { type: String, required: true },
-      po: { type: String, required: true },
-      tehsil: { type: String, required: true },
-      district: { type: String, required: true },
-      state: { type: String, required: true },
-      pincode: { type: String, required: true },
-    },
-    required: true,
-  },
-  presentAddress: {
-    type: {
-      villageTown: { type: String, required: true },
-      po: { type: String, required: true },
-      tehsil: { type: String, required: true },
-      district: { type: String, required: true },
-      state: { type: String, required: true },
-      pincode: { type: String, required: true },
-    },
-    required: true,
-  },
-  contact: {
-    type: {
-      phone: { type: Number, required: true },
-      altPhone: { type: Number, required: true },
-      email: { type: String, required: true },
-    },
-    required: true,
-  },
-  bpl: { type: String, required: true },
-  rcNo: { type: Number, required: true },
-  totalIncome: { type: Number, required: true },
-  bankDetails: {
-    type: {
-      name: { type: String, required: true },
-      accNumber: { type: String, required: true },
-      ifscCode: { type: String, required: true },
-    },
-    required: true,
-  },
-  psebRegNo: { type: String, required: true },
-  previousSchool: {
-    type: {
-      name: { type: String, required: true },
-      board: { type: String, required: true },
-      attendance: { type: String, required: true },
-      percentage: { type: String, required: true },
-    },
-    required: true,
-  },
-  health: {
-    type: {
-      isAllergic: { type: Boolean, required: true },
-      allergies: { type: String, required: false },
-      bloodGroup: { type: String, required: true },
-      heightCms: { type: Number, required: true },
-      weightKg: { type: Number, required: true },
-    },
-    required: true,
-  },
-  sibling1: {
-    type: {
-      name: { type: String, required: true },
-      class: { type: String, required: true },
-      admissionNo: { type: String, required: true },
-    },
-    required: false,
-  },
-  sibling2: {
-    type: {
-      name: { type: String, required: true },
-      class: { type: String, required: true },
-      admissionNo: { type: String, required: true },
-    },
-    required: false,
-  },
-  sibling3: {
-    type: {
-      name: { type: String, required: true },
-      class: { type: String, required: true },
-      admissionNo: { type: String, required: true },
-    },
-    required: false,
-  },
+  peNumber: { type: Number, required: true, unique: true },
+  name: { type: String, required:true},
+  sex:{type:String, required:true},
+  age:{type:Number, required:true},
+  dob: { type: Date, required:true},
+  religion:{type:String,required:true},
+  caste: {type:String,required:true},
+  nationality: {type:String,required:true},
+  image: {type:String,required:true},
+  aadharNo: {type:Number,required:true, unique:true},
+  fatherORguardian: {type:String,required:true},
+  FGname: {type:String,required:true},
+  FGimage: {type:String,required:true},
+  FGeduQualification: {type:String,required:true},
+  FGoccupation: {type:String,required:true},
+  Mname: {type:String,required:true},
+  Mimage: {type:String,required:true},
+  MeduQualification: {type:String,required:true},
+  Moccupation: {type:String,required:true},
+  perVillageTown: {type:String,required:true},
+  perPo: {type:String,required:true},
+  perTehsil: {type:String,required:true},
+  perDistrict: {type:String,required:true},
+  perState:{type:String,required:true},
+  perPincode: {type:String,required:true},
+  currVillageTown: {type:String,required:true},
+  currPo: {type:String,required:true},
+  currTehsil: {type:String,required:true},
+  currDistrict: {type:String,required:true},
+  currState: {type:String,required:true},
+  currPincode: {type:String,required:true},
+  phone: {type:Number,required:true},
+  altPhone: {type:Number,required:true},
+  email: {type:String,required:true},
+  bpl: {type:String,required:true},
+  rcNo: {type:Number,required:true},
+  totalIncome: {type:Number,required:true},
+  bankName: {type:String,required:true},
+  bankAccNumber: {type:String,required:true},
+  bankIfscCode: {type:String,required:true},
+  psebRegNo: {type:String,required:true},
+  previousSchool: {type:String,required:true},
+  previousBoard: {type:String,required:true},
+  previousAttendance: {type:String,required:true},
+  previousPercentage: {type:String,required:true},
+  isAllergic: {type:Boolean,required:true},
+  allergies: {type:String,required:false},
+  bloodGroup: {type:String,required:true},
+  heightCms: {type:Number,required:true},
+  weightKg: {type:Number,required:true},
+  sb1name: {type:String,required:false},
+  sb1class: {type:String,required:false},
+  sb1admissionNo: {type:String,required:false},
+  sb2name: {type:String,required:false},
+  sb2class: {type:String,required:false},
+  sb2admissionNo: {type:String,required:false},
+  sb3name: {type:String,required:false},
+  sb3class: {type:String,required:false},
+  sb3admissionNo: {type:String,required:false},
   isApprove: { type: Boolean, required: true },
   isAdmissionGranted: { type: Boolean, required: true },
   reasonIfNot: { type: String, required: false },
@@ -238,10 +139,8 @@ const FormSchema = new Schema<IForm>({
   rollno: { type: String, required: true },
   dateOfAdmission: { type: Date, required: true },
   remarks: { type: String, required: false },
-  isConcessionGranted: { type: Boolean, required: true },
   concessionType: { type: String, required: true },
 });
-
 const FormModel = model<IForm>("Form", FormSchema);
 
 export default FormModel;

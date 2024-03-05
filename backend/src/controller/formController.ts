@@ -1,0 +1,83 @@
+import { Request, Response } from "express";
+import FormModel, { IForm } from "../models/formModel";
+
+export const addForm = async (req: any, res: Response) => {
+  try {
+    const formData: IForm = new FormModel({
+      peNumber: req.body.peNumber,
+      name: req.body.name,
+      sex: req.body.sex,
+      age: req.body.age,
+      dob: req.body.dob,
+      religion: req.body.religion,
+      caste: req.body.caste,
+      nationality: req.body.nationality,
+      image: req.body.image ? req.body.image : "",
+      aadharNo: req.body.aadharNo,
+      fatherORguardian: req.body.fatherORguardian,
+      FGname: req.body.FGname,
+      FGimage: req.body.FGimage ? req.body.FGimage : "",
+      FGeduQualification: req.body.FGeduQualification,
+      FGoccupation: req.body.FGoccupation,
+      Mname: req.body.Mname,
+      Mimage: req.body.Mimage ? req.body.Mimage : "",
+      MeduQualification: req.body.MeduQualification,
+      Moccupation: req.body.Moccupation,
+      perVillageTown: req.body.perVillageTown,
+      perPo: req.body.perPo,
+      perTehsil: req.body.perTehsil,
+      perDistrict: req.body.perDistrict,
+      perState: req.body.perState,
+      perPincode: req.body.perPincode,
+      currVillageTown: req.body.currVillageTown,
+      currPo: req.body.currPo,
+      currTehsil: req.body.currTehsil,
+      currDistrict: req.body.currDistrict,
+      currState: req.body.currState,
+      currPincode: req.body.currPincode,
+      phone: req.body.phone,
+      altPhone: req.body.altPhone,
+      email: req.body.email,
+      bpl: req.body.bpl,
+      rcNo: req.body.rcNo,
+      totalIncome: req.body.totalIncome,
+      bankName: req.body.bankName,
+      bankAccNumber: req.body.bankAccNumber,
+      bankIfscCode: req.body.bankIfscCode,
+      psebRegNo: req.body.psebRegNo,
+      previousSchool: req.body.previousSchool,
+      previousBoard: req.body.previousBoard,
+      previousAttendance: req.body.previousAttendance,
+      previousPercentage: req.body.previousPercentage,
+      isAllergic: req.body.isAllergic,
+      allergies: req.body.allergies,
+      bloodGroup: req.body.bloodGroup,
+      heightCms: req.body.heightCms,
+      weightKg: req.body.weightKg,
+      sb1name: req.body.sb1name,
+      sb1class: req.body.sb1class,
+      sb1admissionNo: req.body.sb1admissionNo,
+      sb2name: req.body.sb2name,
+      sb2class: req.body.sb2class,
+      sb2admissionNo: req.body.sb2admissionNo,
+      sb3name: req.body.sb3name,
+      sb3class: req.body.sb3class,
+      sb3admissionNo: req.body.sb3admissionNo,
+      isApprove: req.body.isApprove,
+      isAdmissionGranted: req.body.isAdmissionGranted,
+      reasonIfNot: req.body.reasonIfNot,
+      admissionNo: req.body.admissionNo,
+      class: req.body.class,
+      rollno: req.body.rollno,
+      dateOfAdmission: req.body.dateOfAdmission,
+      remarks: req.body.remarks,
+      concessionType: req.body.concessionType,
+    });
+
+    const newForm: IForm= await FormModel.create(formData);
+    res.status(201).json({message:'Data Added',form:newForm});
+  } catch (error) {
+    console.log(`Error: ${error}`);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
