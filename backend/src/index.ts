@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import formRoutes from './routes/formRoutes';
+const cors = require('cors');
 const app=express();
 app.use(express.json());
 try{
@@ -9,6 +10,7 @@ try{
 }catch(e){
     console.log(`${e}`);
 }
+app.use(cors());
 app.use('/',formRoutes);
 app.listen(3000,()=>{
     console.log('server is running on port,3000');

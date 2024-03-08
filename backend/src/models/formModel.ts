@@ -9,15 +9,15 @@ export interface IForm extends Document {
   religion: string;
   caste: string;
   nationality: string;
-  image: string;
+  image?: string;
   aadharNo: number;
   fatherORguardian: string;
   FGname: string;
-  FGimage: string;
+  FGimage?: string;
   FGeduQualification: string;
   FGoccupation: string;
   Mname: string;
-  Mimage: string;
+  Mimage?: string;
   MeduQualification: string;
   Moccupation: string;
   perVillageTown: string;
@@ -33,7 +33,7 @@ export interface IForm extends Document {
   currState: string;
   currPincode: string;
   phone: number;
-  altPhone: number;
+  altPhone?: number;
   email: string;
   bpl: string;
   rcNo: number;
@@ -80,15 +80,15 @@ const FormSchema = new Schema<IForm>({
   religion:{type:String,required:true},
   caste: {type:String,required:true},
   nationality: {type:String,required:true},
-  image: {type:String,required:true},
+  image: {type:String,required:false},
   aadharNo: {type:Number,required:true, unique:true},
   fatherORguardian: {type:String,required:true},
   FGname: {type:String,required:true},
-  FGimage: {type:String,required:true},
+  FGimage: {type:String,required:false},
   FGeduQualification: {type:String,required:true},
   FGoccupation: {type:String,required:true},
   Mname: {type:String,required:true},
-  Mimage: {type:String,required:true},
+  Mimage: {type:String,required:false},
   MeduQualification: {type:String,required:true},
   Moccupation: {type:String,required:true},
   perVillageTown: {type:String,required:true},
@@ -104,7 +104,7 @@ const FormSchema = new Schema<IForm>({
   currState: {type:String,required:true},
   currPincode: {type:String,required:true},
   phone: {type:Number,required:true},
-  altPhone: {type:Number,required:true},
+  altPhone: {type:Number,required:false},
   email: {type:String,required:true},
   bpl: {type:String,required:true},
   rcNo: {type:Number,required:true},

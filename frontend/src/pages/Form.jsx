@@ -11,6 +11,7 @@ import {
 import { Button, ConfigProvider, message } from "antd";
 import { useState } from "react";
 import enUS from "antd/es/locale/en_US";
+import axios from "axios";
 
 const waitTime = (time = 100) => {
   return new Promise((resolve) => {
@@ -22,13 +23,26 @@ const waitTime = (time = 100) => {
 
 const Form = () => {
   const [loading, setLoading] = useState(false);
+  const [peNumber,setPeNumber] = useState('');
   return (
     <ConfigProvider locale={enUS}>
       <ProCard>
         <StepsForm
           onFinish={async () => {
             setLoading(true);
-            await waitTime(1000);
+            try {
+              const response = await axios.post(
+                "http://localhost:3000/add-form",
+                {
+                  body: {
+                    
+                  },
+                }
+              );
+              console.log(response.body);
+            } catch (e) {
+              console.log("error", e);
+            }
             message.success("Submitted successfully");
             setLoading(false);
           }}
@@ -99,9 +113,11 @@ const Form = () => {
                 placeholder="Gender"
                 label="Sex"
                 name="sex"
+                rules={[{ required: true }]}
                 options={[
                   { value: "Male", label: "Male" },
                   { value: "Female", label: "Female" },
+                  { value: "Other", label: "Other" },
                 ]}
               />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -109,24 +125,36 @@ const Form = () => {
                 label="Date of Birth"
                 name="dob"
                 placeholder="Select Date"
+                rules={[{ required: true }]}
               />
             </div>
             <div style={{ display: "flex" }}>
               <ProFormSelect
                 name="religion"
                 label="Religion"
+                rules={[{ required: true }]}
                 options={[
                   { value: "Sikh", label: "Sikh" },
                   { value: "Hindu", label: "Hindu" },
                   { value: "Muslim", label: "Muslim" },
                   { value: "Christian", label: "Christian" },
-                  { value: "Others", label: "Others" },
+                  { value: "Other", label: "Other" },
                 ]}
               />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <ProFormDependency name={["religion"]}>
+                {({ religion }) => {
+                  return religion == "Other" ? (
+                    <ProFormText label="Religion" />
+                  ) : (
+                    <p></p>
+                  );
+                }}
+              </ProFormDependency>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ProFormSelect
-                name="caste"
-                label="Caste"
+                name="categoty"
+                label="Categoty"
                 options={[
                   { value: "BC", label: "BC" },
                   { value: "SC", label: "SC" },
@@ -134,6 +162,13 @@ const Form = () => {
                   { value: "OBC", label: "OBC" },
                   { value: "ST", label: "ST" },
                 ]}
+              />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <ProFormText
+                name="caste"
+                label="Caste"
+                placeholder="Caste Name"
+                rules={[{ required: true }]}
               />
             </div>
             <div style={{ display: "flex" }}>
@@ -196,26 +231,34 @@ const Form = () => {
                 rules={[{ required: true }]}
               />
             </div>
-            <h3>Parents Details</h3>
+            <h3>Parents/Guardian Details</h3>
+            <ProFormSelect
+              label="Father or Guardian"
+              name="fatherOrGuardian"
+              options={[
+                { value: "Father", label: "Father" },
+                { value: "Guardian", label: "Guardian" },
+              ]}
+            />
             <div style={{ display: "flex" }}>
               <ProFormText
-                name="fatherName"
-                label="Father Name"
-                placeholder="Father Name"
+                name="FGname"
+                label="Father/Guardian Name"
+                placeholder="Name"
                 rules={[{ required: true }]}
               />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ProFormText
-                name="fatherOccupation"
-                label="Father Occupation"
-                placeholder="Father Occupation"
+                name="FGccupation"
+                label="Father/Guardian Occupation"
+                placeholder="Occupation"
                 rules={[{ required: true }]}
               />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ProFormText
-                name="fatherEdu"
-                label="Father Education"
-                placeholder="Father Education"
+                name="FGedu"
+                label="Father/Guardian Education"
+                placeholder="Education"
                 rules={[{ required: true }]}
               />
             </div>
@@ -223,21 +266,21 @@ const Form = () => {
               <ProFormText
                 name="motherName"
                 label="Mother Name"
-                placeholder="Mother Name"
+                placeholder="Name"
                 rules={[{ required: true }]}
               />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ProFormText
                 name="motherOccupation"
                 label="Mother Occupation"
-                placeholder="Mother Occupation"
+                placeholder="Occupation"
                 rules={[{ required: true }]}
               />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ProFormText
                 name="motherEdu"
                 label="Mother Education"
-                placeholder="Mother Education"
+                placeholder="Education"
                 rules={[{ required: true }]}
               />
             </div>
@@ -434,6 +477,15 @@ const Form = () => {
                 ]}
               />
             </div>
+            <ProFormDependency name={["isAdmissionGranted"]}>
+              {({ isAdmissionGranted }) => {
+                return isAdmissionGranted == false ? (
+                  <ProFormTextArea label="Reason" name="reason" />
+                ) : (
+                  <p></p>
+                );
+              }}
+            </ProFormDependency>
             <div style={{ display: "flex" }}>
               <ProFormText name="admissionNO" label="Admission No" />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -446,7 +498,7 @@ const Form = () => {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ProFormText name="concession" label="Concession Type" />
             </div>
-            <ProFormTextArea name='remarks'  label='Remarks' />
+            <ProFormTextArea name="remarks" label="Remarks" />
           </StepsForm.StepForm>
         </StepsForm>
       </ProCard>
