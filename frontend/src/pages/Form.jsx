@@ -20,10 +20,8 @@ const waitTime = (time = 100) => {
     }, time);
   });
 };
-
 const Form = () => {
   const [loading, setLoading] = useState(false);
-  const [peNumber,setPeNumber] = useState('');
   return (
     <ConfigProvider locale={enUS}>
       <ProCard>
@@ -219,7 +217,7 @@ const Form = () => {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ProFormText
                 name="rcNo"
-                label="Rc Number"
+                label="RC Number"
                 placeholder="RC"
                 rules={[{ required: true }]}
               />
@@ -338,12 +336,14 @@ const Form = () => {
                 name="perVillageTown"
                 label="Village/Town"
                 placeholder="Village/Town"
+                rules={[{ required: true }]}
               />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ProFormText
                 name="perPo"
                 label="Post Office"
                 placeholder="Post Office"
+                rules={[{ required: true }]}
               />
             </div>
             <div style={{ display: "flex" }}>
@@ -351,12 +351,14 @@ const Form = () => {
                 name="perTehsil"
                 label="Tehsil"
                 placeholder="Tehsil"
+                rules={[{ required: true }]}
               />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ProFormText
                 name="perDistrict"
                 label="District"
                 placeholder="District"
+                rules={[{ required: true }]}
               />
             </div>
             <div style={{ display: "flex" }}>
@@ -364,9 +366,10 @@ const Form = () => {
                 name="perPincode"
                 label="Pincode"
                 placeholder="Pincode"
+                rules={[{ required: true }]}
               />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <ProFormText name="perState" label="State" placeholder="State" />
+              <ProFormText name="perState" label="State" placeholder="State"  rules={[{ required: true }]}/>
             </div>
             <h3>Current Address </h3>
             <div style={{ display: "flex" }}>
@@ -374,12 +377,14 @@ const Form = () => {
                 name="currVillageTown"
                 label="Village/Town"
                 placeholder="Village/Town"
+                rules={[{ required: true }]}
               />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ProFormText
                 name="currPo"
                 label="Post Office"
                 placeholder="Post Office"
+                rules={[{ required: true }]}
               />
             </div>
             <div style={{ display: "flex" }}>
@@ -387,12 +392,14 @@ const Form = () => {
                 name="currTehsil"
                 label="Tehsil"
                 placeholder="Tehsil"
+                rules={[{ required: true }]}
               />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ProFormText
                 name="currDistrict"
                 label="District"
                 placeholder="District"
+                rules={[{ required: true }]}
               />
             </div>
             <div style={{ display: "flex" }}>
@@ -400,9 +407,10 @@ const Form = () => {
                 name="currPincode"
                 label="Pincode"
                 placeholder="Pincode"
+                rules={[{ required: true }]}
               />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <ProFormText name="currState" label="State" placeholder="State" />
+              <ProFormText name="currState" label="State" placeholder="State" rules={[{ required: true }]}/>
             </div>
           </StepsForm.StepForm>
           <StepsForm.StepForm name="health" title="Health Deatils">
@@ -433,15 +441,16 @@ const Form = () => {
               name="bankName"
               label="Bank Name"
               placeholder="Bank Name"
+              rules={[{ required: true }]}
             />
             <div style={{ display: "flex" }}>
-              <ProFormText name="ifscCode" label="IFSC" />
+              <ProFormText name="ifscCode" label="IFSC" rules={[{ required: true }]} />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <ProFormText name="accNumber" label="Account Number" />
+              <ProFormText name="accNumber" label="Account Number" rules={[{ required: true }]} />
             </div>
             <h3>Previous School Details</h3>
             <div style={{ display: "flex" }}>
-              <ProFormText name="psebRegNo" label="PSEB Registration Number" />
+              <ProFormText name="psebRegNo" label="Previous School Registration Number" />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <ProFormText name="previousBoard" label="Previous Board" />
             </div>
@@ -462,6 +471,7 @@ const Form = () => {
               <ProFormSelect
                 name="isApprove"
                 label="isApproved"
+                rules={[{ required: true }]}
                 options={[
                   { value: true, label: "Yes" },
                   { value: false, label: "No" },
@@ -471,6 +481,7 @@ const Form = () => {
               <ProFormSelect
                 name="isAdmissionGranted"
                 label="Admission Granted"
+                rules={[{ required: true }]}
                 options={[
                   { value: true, label: "Yes" },
                   { value: false, label: "No" },
@@ -487,16 +498,16 @@ const Form = () => {
               }}
             </ProFormDependency>
             <div style={{ display: "flex" }}>
-              <ProFormText name="admissionNO" label="Admission No" />
+              <ProFormText name="admissionNO" label="Admission No" rules={[{ required: true }]}/>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <ProFormText name="class" label="Class" />
+              <ProFormText name="class" label="Class" rules={[{ required: true }]} />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <ProFormText name="rollno" label="Roll No" />
+              <ProFormText name="rollno" label="Roll No" rules={[{ required: true }]}/>
             </div>
             <div style={{ display: "flex" }}>
-              <ProFormDatePicker name="admissionDate" label="Admission Date" />
+              <ProFormDatePicker name="admissionDate" label="Admission Date" rules={[{ required: true }]}/>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <ProFormText name="concession" label="Concession Type" />
+              <ProFormText name="concession" label="Concession Type"  />
             </div>
             <ProFormTextArea name="remarks" label="Remarks" />
           </StepsForm.StepForm>
