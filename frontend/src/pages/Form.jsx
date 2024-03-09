@@ -26,15 +26,77 @@ const Form = () => {
     <ConfigProvider locale={enUS}>
       <ProCard>
         <StepsForm
-          onFinish={async () => {
+          onFinish={async (values) => {
             setLoading(true);
             try {
               const response = await axios.post(
                 "http://localhost:3000/add-form",
                 {
-                  body: {
-                    
-                  },
+                  peNumber: values.peNumber,
+                  name: values.name,
+                  sex:values.sex,
+                  age:20,
+                  dob:values.dob,
+                  religion:values.religion!='Other'?values.religion:values.otherReligion,
+                  caste:values.category,
+                  nationality:values.nationlaity,
+                  aadharNo:values.aadharNo,
+                  fatherORguardian:values.fatherOrGuardian,
+                  FGname:values.FGname,
+                  FGeduQualification:values.FGedu,
+                  FGoccupation:values.FGccupation,
+                  Mname:values.motherName,
+                  Moccupation:values.motherOccupation,
+                  MeduQualification:values.motherEdu,
+                  sb1name:values.sb1name,
+                  sb1Class:values.sb1Class,
+                  sb1admissionNo:values.sb1admissionNo,
+                  sb2name:values.sb2name,
+                  sb2Class:values.sb2Class,
+                  sb2admissionNo:values.sb2admissionNo,
+                  sb3name:values.sb3name,
+                  sb3Class:values.sb3Class,
+                  sb3admissionNo:values.sb3admissionNo,
+                  perVillageTown:values.perVillageTown,
+                  perPo:values.perPo,
+                  perTehsil:values.perTehsil,
+                  perDistrict:values.perDistrict,
+                  perState:values.perState,
+                  perPincode:values.perPincode,
+                  currVillageTown:values.currVillageTown,
+                  currPo:values.currPo,
+                  currTehsil:values.currTehsil,
+                  currDistrict:values.currDistrict,
+                  currState:values.currState,
+                  currPincode:values.currPincode,
+                  phone:values.phoneNo,
+                  altPhone:values.altPhone,
+                  email:values.email,
+                  bpl:values.bpl,
+                  rcNo:values.rcNo,
+                  totalIncome:values.totalIncome,
+                  bankName:values.bankName,
+                  bankAccNumber:values.accNumber,
+                  bankIfscCode:values.ifscCode,
+                  psebRegNo:values.psebRegNo,
+                  previousSchool:values.previousSchool,
+                  previousBoard:values.previousBoard,
+                  previousAttendance:values.attendence,
+                  previousPercentage:values.percentage,
+                  isAllergic:values.isAlergic,
+                  allergies:values.alergies,
+                  bloodGroup:values.bloodGroup,
+                  heightCms:values.height,
+                  weightKg:values.weight,
+                  isApprove:values.isApprove,
+                  isAdmissionGranted:values.isAdmissionGranted,
+                  admissionNo:values.admissionNO,
+                  reasonIfNot:values.reason,
+                  class:values.class,
+                  rollno:values.rollno,
+                  dateofAdmission:values.admissionDate,
+                  concessionType:values.concession,
+                  remarks:values.remarks
                 }
               );
               console.log(response.body);
@@ -143,7 +205,7 @@ const Form = () => {
               <ProFormDependency name={["religion"]}>
                 {({ religion }) => {
                   return religion == "Other" ? (
-                    <ProFormText label="Religion" />
+                    <ProFormText label="Religion" name='otherReligion'/>
                   ) : (
                     <p></p>
                   );
