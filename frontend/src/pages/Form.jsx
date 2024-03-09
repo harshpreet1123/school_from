@@ -20,7 +20,6 @@ const waitTime = (time = 100) => {
     }, time);
   });
 };
-
 const Form = () => {
   const [loading, setLoading] = useState(false);
   return (
