@@ -23,7 +23,6 @@ const waitTime = (time = 100) => {
 
 const Form = () => {
   const [loading, setLoading] = useState(false);
-  const [peNumber,setPeNumber] = useState('');
   return (
     <ConfigProvider locale={enUS}>
       <ProCard>
