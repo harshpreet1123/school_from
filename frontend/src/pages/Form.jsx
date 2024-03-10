@@ -38,7 +38,7 @@ const Form = () => {
                   age:20,
                   dob:values.dob,
                   religion:values.religion!='Other'?values.religion:values.otherReligion,
-                  caste:values.category,
+                  caste:values.caste,
                   nationality:values.nationlaity,
                   aadharNo:values.aadharNo,
                   fatherORguardian:values.fatherOrGuardian,
@@ -83,7 +83,7 @@ const Form = () => {
                   previousBoard:values.previousBoard,
                   previousAttendance:values.attendence,
                   previousPercentage:values.percentage,
-                  isAllergic:values.isAlergic,
+                  isAllergic:values.isAlergic==null?false:true,
                   allergies:values.alergies,
                   bloodGroup:values.bloodGroup,
                   heightCms:values.height,
@@ -94,7 +94,7 @@ const Form = () => {
                   reasonIfNot:values.reason,
                   class:values.class,
                   rollno:values.rollno,
-                  dateofAdmission:values.admissionDate,
+                  dateOfAdmission:values.admissionDate,
                   concessionType:values.concession,
                   remarks:values.remarks
                 }
